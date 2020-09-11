@@ -1,0 +1,9 @@
+var request = new XMLHttpRequest(); //initiates request
+request.open GET /api/v1/announcements; //initiates specific URL API request
+request.open GET - /api/v1/courses/:course_id/assignments
+request.setRequestHeader("Authorization", <OAuth2 Token>); //sets header for authenticated endpoints
+request.onload = function() { //this function is run once the request is complete
+  var obj = JSON.parse(request.responseText()); //parse response text into a usable js object
+  console.log(obj[<parameter>]); //as an example, you can print a specific parameter of the response object
+}
+request.send(); //Then you have to actually send the request, which connects to the API server, gets the info, and returns it
