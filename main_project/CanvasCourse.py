@@ -5,6 +5,7 @@ class CanvasCourse:
 
   def __init__(self, institution, auth_token, class_code):
     #'13605~tyg7VFRxKn0BmCdQUK5gzgte5Sy8H4lgYCwFfPz3Bbb5sU6k3nD5l46WORwS4AEF'
+    #'13605~emUlcabJaZL40QOMJMF39mUzIpOnRGMzI4c6fI9ZIVgRa6cswtXTCMLO8WTL9O60'
     self.auth_token = auth_token
     self.institution = institution
     self.class_code = class_code
@@ -19,17 +20,15 @@ class CanvasCourse:
   #date is in the format 'YYYY-MM-DD'
   #returns all announcements for self.class_code with a starting date of start_date
   #and an ending date of end_date
-  def getAnnouncements(self, start_date, end_date):
+  def getAnnouncements(self):
     return self.session.get(
-      self.initial_url + 'announcements',
-      params={'context_codes[]':'course_' + self.class_code,
-              'start_date':start_date, 'end_date':end_date}).json()
+      self.initial_url + 'announcements?context_codes[]=course_' + self.class_code).json()
 
   
   #returns all assignments along with the due dates for the course
   def getAssignments(self):
     return self.session.get(
-      self.initial_url + "courses/" + self.class_code + "/assignments?include[]=all_dates")
+      self.initial_url + "courses/" + self.class_code + "/assignments").json
 #   def get_info(self):
 #   	headers = {
 #     'Authorization': 'Bearer {}'.format(self.auth_token),
