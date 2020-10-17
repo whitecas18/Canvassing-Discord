@@ -11,12 +11,14 @@ class CanvasCourse:
     self.class_code = class_code
     self.session = requests.session()
     if institution is not None:
-     self.headers = {
-        'Authorization': 'Bearer {}'.format(self.auth_token),
-      }
-     self.session.headers.update(self.headers)
-    if  auth_token is not None:
       self.initial_url = 'https://{}.instructure.com/api/v1/'.format(self.institution)
+
+    
+    if  auth_token is not None:
+      self.headers = {
+         'Authorization': 'Bearer {}'.format(self.auth_token),
+       }
+      self.session.headers.update(self.headers)
     else:
       self.headers = None
       self.initial_url = None

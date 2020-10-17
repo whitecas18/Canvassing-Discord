@@ -18,9 +18,11 @@ async def on_ready():
     print(f'{client.user} has connected to Discord!')
 
 course = CanvasCourse()
-
+courses = CanvasList()
 @client.event
 async def on_message(message):
+    if message.content.startswith("!addclass"):
+        
     if message.content == '!announcement':
         array = course.getAnnouncements()
         await message.channel.send(html2text(array[0]['message']))
